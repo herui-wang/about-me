@@ -1,0 +1,173 @@
+:root {
+  --bg: #fafafa;
+  --bg-soft: #f1f1ef;
+  --text: #1a1a1a;
+  --dim: #6b6b6b;
+  --accent: #0f766e;
+  --line: #e2e2df;
+}
+
+[data-theme="dark"] {
+  --bg: #111312;
+  --bg-soft: #1a1c1b;
+  --text: #e8e8e6;
+  --dim: #9a9a96;
+  --accent: #5eead4;
+  --line: #2a2d2b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-weight: 400;
+  transition: background .3s ease, color .3s ease;
+}
+
+/* ---------- Nav ---------- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  z-index: 10;
+}
+.nav-name {
+  font-weight: 600;
+  font-size: .95rem;
+  text-decoration: none;
+  color: var(--text);
+  letter-spacing: .01em;
+}
+.nav-links { display: flex; gap: 1.5rem; align-items: center; }
+.nav-links a {
+  font-size: .85rem;
+  color: var(--dim);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--accent); }
+#theme-toggle {
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  width: 32px; height: 32px;
+  cursor: pointer;
+  color: var(--dim);
+  font-size: .9rem;
+  transition: color .2s, border-color .2s;
+}
+#theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- Layout ---------- */
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.hero {
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 4rem;
+}
+
+.avatar {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.75rem;
+  border: 1px solid var(--line);
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: .75rem;
+}
+.dim { color: var(--dim); font-weight: 400; }
+
+.tagline { font-size: 1.05rem; color: var(--text); margin-bottom: .25rem; }
+.sub { color: var(--dim); font-size: .95rem; margin-bottom: 1.25rem; }
+.interests { color: var(--dim); font-size: .9rem; }
+
+/* ---------- Sections ---------- */
+.section { padding: 3.5rem 0; border-top: 1px solid var(--line); }
+h2 {
+  font-size: .8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+.section p { color: var(--dim); margin-bottom: 1rem; }
+.section p:last-child { margin-bottom: 0; }
+
+.entry { padding: 1rem 0; }
+.entry:first-of-type { padding-top: 0; }
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.entry-title { font-weight: 500; font-size: .98rem; }
+.entry-date { color: var(--dim); font-size: .82rem; white-space: nowrap; }
+.entry-org { font-size: .88rem; margin: .15rem 0 .35rem !important; }
+.entry p { font-size: .9rem; }
+
+/* ---------- Contact ---------- */
+.contact-links { display: flex; gap: 1.5rem; margin-top: .5rem; }
+.contact-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: .95rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: color .2s, border-color .2s;
+}
+.contact-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- Footer ---------- */
+footer {
+  border-top: 1px solid var(--line);
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--dim);
+  font-size: .8rem;
+}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+@media (max-width: 520px) {
+  .nav { padding: .85rem 1.2rem; }
+  .nav-links { gap: .9rem; }
+  .nav-links a { font-size: .8rem; }
+}
